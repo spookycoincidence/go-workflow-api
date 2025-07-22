@@ -6,13 +6,13 @@
 
 ## Descripción
 
-Este proyecto es una aplicación web desarrollada en Go que implementa un sistema completo para la gestión de proyectos y tareas. Basado en una arquitectura modular, utiliza Echo como framework HTTP, GORM para manejo de base de datos PostgreSQL y Redis para cacheo, proporcionando una API RESTful segura y escalable.
+Este proyecto es una aplicación web desarrollada en Go que implementa un sistema completo para la gestión de proyectos. Basado en una arquitectura modular, utiliza Echo como framework HTTP, GORM para manejo de base de datos PostgreSQL y Redis para cacheo, proporcionando una API RESTful segura y escalable.
 
 ---
 
 ## Funcionalidades
 
-- CRUD completo para proyectos y tareas
+- CRUD 
 - Autenticación y autorización de usuarios
 - Cacheo de consultas frecuentes con Redis
 - Documentación automática de API con Swagger
@@ -24,9 +24,9 @@ Este proyecto es una aplicación web desarrollada en Go que implementa un sistem
 ## Tecnologías principales
 
 - Golang
-- Echo (framework web)
+- Echo 
 - GORM (ORM para PostgreSQL)
-- Redis (cacheo)
+- Redis 
 - Docker & Docker Compose (para orquestar servicios)
 
 ---
