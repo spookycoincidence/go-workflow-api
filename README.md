@@ -1,7 +1,6 @@
 # Go-Web - Project Management API
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/spookycoincidence/go-web)](https://goreportcard.com/report/github.com/spookycoincidence/go-web)  
-[![Build Status](https://github.com/spookycoincidence/go-web/actions/workflows/go.yml/badge.svg)](https://github.com/spookycoincidence/go-web/actions/workflows/go.yml)
 
 ---
 
