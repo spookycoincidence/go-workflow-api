@@ -57,14 +57,6 @@ go run main.go
 5. La API estará disponible en http://localhost:8080
 
 
-## 📌 Endpoints Disponibles
-
-| POST   | /projects           |Crear nuevo proyecto      |
-| GET    | /proyects           |Listar Proyectos          |
-| GET    | /projects/:id       | Obtener proyecto por ID  |
-| PUT    | /projects/:id       | Actualizar proyecto      |
-| DELETE | /projects/:id       | Eliminar proyecto        |
-
 ## 📝 Inspiración
 Este proyecto está basado y adaptado del repositorio original StarpTech/go-web, con modificaciones para ajustarlo a un sistema de gestión de proyectos y tareas personalizado..
 
