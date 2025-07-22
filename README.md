@@ -1,5 +1,4 @@
 # Go Project Management API
----
 
 ## Descripción
 
