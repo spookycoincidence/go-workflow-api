@@ -1,136 +1,82 @@
-![big-gopher](big-gopher.png)
+# Go-Web - Project Management API
 
-[![License MIT](https://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
-[![Build Status](https://github.com/StarpTech/go-web/workflows/Go/badge.svg)](https://github.com/StarpTech/go-web/actions)
-[![Go Report Card](https://goreportcard.com/badge/github.com/StarpTech/go-web)](https://goreportcard.com/report/github.com/StarpTech/go-web)
+[![Go Report Card](https://goreportcard.com/badge/github.com/spookycoincidence/go-web)](https://goreportcard.com/report/github.com/spookycoincidence/go-web)  
+[![Build Status](https://github.com/spookycoincidence/go-web/actions/workflows/go.yml/badge.svg)](https://github.com/spookycoincidence/go-web/actions/workflows/go.yml)
 
-# Go-Web
+---
 
-Modern Web Application with Golang "Keep it simple, stupid"
+## Descripción
 
-# Stack
+Este proyecto es una aplicación web desarrollada en Go que implementa un sistema completo para la gestión de proyectos y tareas. Basado en una arquitectura modular, utiliza Echo como framework HTTP, GORM para manejo de base de datos PostgreSQL y Redis para cacheo, proporcionando una API RESTful segura y escalable.
 
-## Backend
+---
 
-- HTTP Middleware [Echo](https://echo.labstack.com/)
-- ORM library [gorm](https://github.com/jinzhu/gorm)
-- Configuration [env](https://github.com/caarlos0/env)
-- Load ENV variables from .env file [godotenv](https://github.com/joho/godotenv)
-- Payload validation [validator](https://github.com/go-playground/validator)
-- Cache [Redis](https://github.com/go-redis/redis)
-- Localization [gotext](https://github.com/leonelquinteros/gotext)
-- Database [CockroachDB](https://github.com/cockroachdb/cockroach)
-- Releasing [goreleaser](https://github.com/goreleaser/goreleaser)
+## Funcionalidades
 
-## Frontend
+- CRUD completo para proyectos y tareas
+- Autenticación y autorización de usuarios
+- Cacheo de consultas frecuentes con Redis
+- Documentación automática de API con Swagger
+- Configuración flexible mediante variables de entorno
+- Soporte para migraciones y seeders
 
-- Server side templating [Go Templates](https://golang.org/pkg/text/template/)
-- Module Bundler [Parcel bundler](https://github.com/parcel-bundler/parcel)
-- Javascript UI library [React](https://github.com/facebook/react)
+---
 
-# Getting Started
+## Tecnologías principales
 
-## Project structure
+- Golang
+- Echo (framework web)
+- GORM (ORM para PostgreSQL)
+- Redis (cacheo)
+- Docker & Docker Compose (para orquestar servicios)
 
-Follows https://github.com/golang-standards/project-layout
+---
 
-## Building From Source
+## Instalación y ejecución local
 
-This project requires Go +1.13 and Go module support.
-
-To build the project run:
-
-```
-make
+1. Clonar el repositorio:
+```bash
+git clone https://github.com/spookycoincidence/go-web.git
+cd go-web
 ```
 
-## Bootstrap infrastructure and run application
 
-This project requires docker and docker compose to run the required services.
-
-1. To run the services:
-
+2. Configurar variables de entorno (puede ser en un archivo .env):
+```bash
+DATABASE_URL=postgres://usuario:password@localhost:5432/tu_db?sslmode=disable
+REDIS_ADDR=localhost:6379
+SERVER_PORT=:8080
 ```
+
+3. Ejecutar con Docker Compose (opcional):
+```bash
 docker-compose up
 ```
 
-2. To create database
-
-```
-docker run --network="host" -it cockroachdb/cockroach:v19.2.1 sql --insecure -e "$(cat ./scripts/create.db.sql)"
-```
-
-3. Build [web application](ui/README.md)
-
-4. Start server
-
-```
+4. O ejecutar directamente:
+```bash
+go mod tidy
 go run main.go
 ```
 
-5. Navigate to users list [page](http://127.0.0.1/users)
+5. La API estará disponible en http://localhost:8080
 
-## CI and Static Analysis
 
-### CI
+## 📌 Endpoints Disponibles
 
-All pull requests will run through CI, which is currently hosted by Github-CI.
-Community contributors should be able to see the outcome of this process by looking at the checks on their PR.
-Please fix any issues to ensure a prompt review from members of the team.
+| POST   | /projects           |Crear nuevo proyecto      |
+| GET    | /proyects           |Listar Proyectos          |
+| GET    | /projects/:id       | Obtener proyecto por ID  |
+| PUT    | /projects/:id       | Actualizar proyecto      |
+| DELETE | /projects/:id       | Eliminar proyecto        |
 
-### Static Analysis
+## 📝 Inspiración
+Este proyecto está basado y adaptado del repositorio original StarpTech/go-web, con modificaciones para ajustarlo a un sistema de gestión de proyectos y tareas personalizado..
 
-This project uses the following static analysis tools.
-Failure during the running of any of these tools results in a failed build.
-Generally, code must be adjusted to satisfy these tools, though there are exceptions.
+## Desarrollado con ❤️ por spookycoincidence
 
-- [go vet](https://golang.org/cmd/vet/) checks for Go code that should be considered incorrect.
-- [go fmt](https://golang.org/cmd/gofmt/) checks that Go code is correctly formatted.
-- [golangci-lint](https://github.com/golangci/golangci-lintt) checks for things like: unused code, code that can be simplified, code that is incorrect and code that will have performance issues.
-- [go mod tidy](https://tip.golang.org/cmd/go/#hdr-Add_missing_and_remove_unused_modules) ensures that the source code and go.mod agree.
 
-# Releasing
 
-When a new tag is pushed, the version is released with [goreleaser](https://github.com/goreleaser/goreleaser).
 
-```
-$ git tag -a v0.1.0 -m "First release"
-$ git push origin v0.1.0 # => want to release v0.1.0
-```
 
-# Tooling
 
-- IDE plugin [vscode-go](https://github.com/Microsoft/vscode-go)
-- Administration of cockroachdb [DBeaver](https://dbeaver.io/)
-- REST client [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en)
-- Go testing in the browser [go-convey](https://github.com/smartystreets/goconvey)
-- Benchmarking [bombardier](http://github.com/codesenberg/bombardier)
-
-# Documentation
-
-```
-$ godoc github.com/starptech/go-web/pkg/controller
-$ godoc -http=:6060
-```
-
-Visit localhost:6060 and search for `go-web`
-
-# Benchmarking
-
-```
-$ bombardier -c 10 -n 10000 http://localhost:8080/users
-```
-
-# Cockroachdb Cluster overview
-
-http://localhost:8111/
-
-## Deploy on Heroku
-
-[![Heroku Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/StarpTech/go-web)
-
-# Further reading
-
-- http://www.alexedwards.net/blog/organising-database-access
-- https://12factor.net/
-- https://dev.otto.de/2015/09/30/on-monoliths-and-microservices/
